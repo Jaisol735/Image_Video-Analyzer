@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVP AI Photographer Analyzer</title>
+    <link rel="stylesheet" href="script.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>📷 IVP Analyzer</h2>
+                <button class="new-analysis-btn" id="newAnalysisBtn">
+                    ➕ New Analysis
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="past-analyses" id="pastAnalyses">
+                    <h3>Past Analyses</h3>
+                    <div class="analyses-list" id="analysesList">
+                        <div class="no-analyses">
+                            📋
+                            <p>No analyses yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <h3>AI is analyzing your media...</h3>
+                    <p id="loadingStatus">Initializing analysis...</p>
+                </div>
+            </div>
+
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-content">
+                    <h1>📷 AI Photographer Analyzer</h1>
+                    <p>Analyze your images and videos using advanced IVP techniques</p>
+                    
+                    <div class="media-selection">
+                        <h3>Select Media Type</h3>
+                        <div class="media-buttons">
+                            <button class="media-btn" id="imageBtn">
+                                🖼️
+                                <span>Images</span>
+                            </button>
+                            <button class="media-btn" id="videoBtn">
+                                🎥
+                                <span>Videos</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ChatGPT-style input area -->
+                <div class="chat-input-area">
+                    <div class="chat-input-container">
+                        ➕
+                        <input type="text" class="chat-input" placeholder="+ Ask anything" readonly>
+                        <div class="chat-input-icons">
+                            🎤
+                            📊
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topic Selection -->
+            <div class="topic-selection" id="topicSelection" style="display: none;">
+                <div class="selection-header">
+                    <button class="back-btn" id="backToMedia">
+                        ← Back
+                    </button>
+                    <h2>Select Analysis Topics</h2>
+                </div>
+                
+                <div class="topics-container">
+                    <div class="topics-grid" id="topicsGrid">
+                        <!-- Topics will be loaded dynamically -->
+                    </div>
+                    
+                    <div class="selection-actions">
+                        <button class="proceed-btn" id="proceedBtn" disabled>
+                            → Proceed
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Folder Path Input -->
+            <div class="folder-input" id="folderInput" style="display: none;">
+                <div class="input-header">
+                    <button class="back-btn" id="backToTopics">
+                        ← Back
+                    </button>
+                    <h2>Enter Folder Path</h2>
+                </div>
+                
+                <div class="input-container">
+                    <div class="path-input-group">
+                        <label for="folderPath">Folder containing your media files:</label>
+                        <input type="text" id="folderPath" placeholder="C:\Users\Username\Pictures\MyPhotos">
+                        <button class="browse-btn" id="browseBtn">
+                            📁 Browse
+                        </button>
+                    </div>
+                    
+                    <div class="input-actions">
+                        <button class="analyze-btn" id="analyzeBtn" disabled>
+                            ▶️ Start Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Results -->
+            <div class="analysis-results" id="analysisResults" style="display: none;">
+                <div class="results-header">
+                    <h2>Analysis Results</h2>
+                    <div class="results-stats" id="resultsStats">
+                        <!-- Stats will be populated -->
+                    </div>
+                </div>
+                
+                <div class="results-content">
+                    <div class="results-tabs">
+                        <button class="tab-btn active" id="goodImagesTab">
+                            👍 Good Images
+                            <span class="count" id="goodCount">0</span>
+                        </button>
+                        <button class="tab-btn" id="badImagesTab">
+                            👎 Bad Images
+                            <span class="count" id="badCount">0</span>
+                        </button>
+                        <button class="tab-btn" id="summaryTab">
+                            📈 Summary
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="images-grid" id="imagesGrid">
+                            <!-- Images will be loaded here -->
+                        </div>
+                        
+                        <div class="summary-content" id="summaryContent" style="display: none;">
+                            <div class="summary-text" id="summaryText">
+                                <!-- Summary will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Analysis View -->
+            <div class="past-analysis-view" id="pastAnalysisView" style="display: none;">
+                <div class="view-header">
+                    <button class="back-btn" id="backToWelcome">
+                        ← Back to Home
+                    </button>
+                    <h2 id="pastAnalysisTitle">Analysis Details</h2>
+                </div>
+                
+                <div class="past-analysis-content">
+                    <!-- Content will be loaded from past analysis -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for folder selection -->
+    <input type="file" id="folderFileInput" webkitdirectory directory multiple style="display: none;">
+
+    <script src="script.js"></script>
+</body>
+</html>
